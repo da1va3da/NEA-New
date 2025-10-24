@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    background: linear-gradient(180deg, #fff3f4 0%, #ffccd2 30%, #ff4d6d 100%);
+    background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
     margin: 6vh 1rem;
     display: flex;
     flex-direction: column;
