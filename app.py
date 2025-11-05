@@ -4,6 +4,7 @@ import sqlite3
 
 
 app = Flask(__name__)
+app.secret_key = 'StudsightSecretKey123'
 
 @app.route('/') # Home route
 def home():
@@ -27,7 +28,7 @@ def login():
         conn = sqlite3.connect('schooldata.db')
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM Teachers WHERE Email=?", (email))
+        cursor.execute("SELECT * FROM Teachers WHERE Email=?", (email,))
         user = cursor.fetchone()
         conn.close()
 
@@ -36,7 +37,7 @@ def login():
             cursor = connection.cursor()
             cursor.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
             account = cursor.fetchone()
-            connection.close()
+            
 
             if account:
                 session['user'] = email
@@ -49,7 +50,7 @@ def login():
                 session['user'] = email
                 flash('Account created and logged in!')
                 return redirect(url_for('dashboard'))
-
+        
         else:
             flash('Invalid email. Try again.')
 
