@@ -1,0 +1,38 @@
+.sidebar{
+    width: 15%;
+    background-color: #5f0b0b;
+    color: #ecf0f1;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    left: 13%;
+    top: 5%;
+}
+
+.container {
+    margin-left: 15%;
+    padding: 20px;
+}
+
+h1{
+    color: #030000;
+    font-size: 320%;
+}
+
+.container .message{
+    width: 70%;
+    height: auto;
+}
+.message img{
+    width: 29%;
+    height: auto;
+}

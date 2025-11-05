@@ -20,6 +20,21 @@
                     Welcome, Ms {{ surname}}!
                 {%endif%}
             </h2>
+
+            <div class="message">
+                <a href="{{ url_for('messages') }}">
+                    <img src="{{ url_for('static', filename='MsgBoard.png') }}" alt="" >
+                </a>
+                <h2>Messages</h2>
+            </div>
+
+            <div class="students">
+                <a href="{{ url_for('students') }}">
+                    <img src="{{ url_for('static', filename='students.png') }}" alt="" >
+                </a>
+                <h2>Students</h2>
+            </div>
+
         </div>
     </div>
 </body>

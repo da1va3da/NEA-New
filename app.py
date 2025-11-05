@@ -86,8 +86,23 @@ def dashboard():
         flash('You must be logged in to view the dashboard.')
         return redirect(url_for('login'))
 
+@app.route('/messages') # Messages route
+def messages():
+    if 'user' in session:
+        return render_template("messages.html")
+    else:
+        flash('You must be logged in to view messages.')
 
 
+@app.route('/students') # Students route
+def students():
+    if 'user' in session:
+        return render_template("students.html")
+    else:
+        flash('You must be logged in to view students.')
+        return redirect(url_for('login'))
+    
+    
 if __name__ == "__main__": # Run the app
     app.run(debug=True)
 
