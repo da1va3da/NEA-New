@@ -1,6 +1,6 @@
 import sqlite3, os, time, pyinputplus as pyip
 
-connection = sqlite3.connect("student.db")
+connection = sqlite3.connect("schooldata.db")
 cursor = connection.cursor()
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Students 
@@ -39,7 +39,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Behaviour
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Teachers 
                (TeacherID INTEGER PRIMARY KEY AUTOINCREMENT, Firstname TEXT, 
-               Gender TEXT, Surname TEXT, Email TEXT)''')
+                Surname TEXT, Gender TEXT, Email TEXT)''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Subjects 
