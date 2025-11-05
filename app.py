@@ -32,6 +32,13 @@ def login():
         user = cursor.fetchone()
         conn.close()
 
+        conn2 = sqlite3.connect('accounts.db')
+        cursor = conn2.cursor()
+
+        cursor.execute("SELECT * FROM users WHERE email=?", (email,))
+        user2 = cursor.fetchone()
+        conn.close()
+
         if user:
             connection = sqlite3.connect("accounts.db")
             cursor = connection.cursor()
@@ -42,7 +49,9 @@ def login():
             if account:
                 session['user'] = email
                 flash('Login successful!')
-                return redirect(url_for('dashboard'))#
+                return redirect(url_for('dashboard'))
+            elif user2: 
+                flash('Incorrect password. Try again.')
             else:
                 cursor.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, password))
                 connection.commit()
