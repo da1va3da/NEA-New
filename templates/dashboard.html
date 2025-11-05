@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studsight - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <h1 class="title">DASHBOARD</h1> 
+            <h2>
+                {%if gender=='M'%}
+                    Welcome, Mr {{ surname}}!
+                {%else%}
+                    Welcome, Ms {{ surname}}!
+                {%endif%}
+            </h2>
+        </div>
+    </div>
+</body>
+</html>

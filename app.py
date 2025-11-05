@@ -70,11 +70,22 @@ def login():
 
 @app.route('/dashboard') # Dashboard route
 def dashboard():
+    connection = sqlite3.connect("schooldata.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Teachers WHERE Email=?", (session['user'],))
+    teacher = cursor.fetchall()
     if 'user' in session:
-        return render_template("dashboard.html", user=session['user'])
+        for t in teacher:
+            firstname = t[1]
+            surname = t[2]
+            gender = t[3]
+            email = t[4]
+            
+        return render_template("dashboard.html", user=session['user'], firstname=firstname, surname=surname, gender=gender, email=email)
     else:
-        flash('You need to log in first.')
+        flash('You must be logged in to view the dashboard.')
         return redirect(url_for('login'))
+
 
 
 if __name__ == "__main__": # Run the app
