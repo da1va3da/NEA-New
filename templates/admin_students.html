@@ -1,0 +1,11 @@
+{% extends "base_student.html" %}
+{%block head %}
+    <title>Studsight - Admin Students</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_students.css') }}">
+{% endblock %}
+{% block content %}
+    <div class="add-student">
+        <a href="{{ url_for('add_student') }}" 
+        >Add New Student</a>
+    </div>
+{%endblock %}

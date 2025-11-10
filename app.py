@@ -96,16 +96,62 @@ def messages():
 
 @app.route('/students') # Students route
 def students():
+    connection = sqlite3.connect("schooldata.db")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Teachers WHERE Email=?", (session['user'],))
+    teacher = cursor.fetchall()
     if 'user' in session:
-        return render_template("students.html")
+        for t in teacher:
+            role = t[5]
+        if role == "A":
+            cursor.execute("SELECT * FROM Students")
+            students = cursor.fetchall()
+            return render_template("admin_students.html", students=students) 
+        else:
+            cursor.execute("SELECT * FROM Students")
+            students = cursor.fetchall()
+            return render_template("students.html", students=students)
     else:
         flash('You must be logged in to view students.')
         return redirect(url_for('login'))
     
+
+@app.route('/add_student', methods=['GET', 'POST']) # Add Student route
+def add_student():
+    if 'user' in session:
+        if request.method == 'POST':
+            firstname = request.form.get('firstname')
+            surname = request.form.get('surname')
+            gender = request.form.get('gender')
+            dob = request.form.get('dob')       
+            yeargroup = request.form.get('yeargroup')
+            mastery = request.form.get('mastery')
+            email = request.form.get('email')
+
+            parentname = request.form.get('parentname')
+            parentnumber = request.form.get('parentnumber')
+            address = request.form.get('address')
+            nationality = request.form.get('nationality')
+            countryofbirth = request.form.get('countryofbirth')
+            enrollmentdate = request.form.get('enrollmentdate')
+
+            conditions = request.form.get('conditions')
+            medication = request.form.get('medication')
+            allergies = request.form.get('allergies')
+            needs = request.form.get('needs')
+
+
+            connection = sqlite3.connect("schooldata.db")
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO Students (Firstname, Surname, Gender, DOB) VALUES (?, ?, ?, ?)", (firstname, surname, gender, dob))
+            connection.commit()
+            connection.close()
+            flash('Student added successfully!')
+            return redirect(url_for('students'))
+        return render_template("add_student.html")
     
 if __name__ == "__main__": # Run the app
     app.run(debug=True)
-
 
 
 

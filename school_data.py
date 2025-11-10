@@ -5,7 +5,7 @@ cursor = connection.cursor()
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Students 
                (StudentID INTEGER PRIMARY KEY AUTOINCREMENT,Firstname TEXT, 
-               Surname TEXT, Age INTEGER, Gender TEXT, Mastery TEXT, 
+               Surname TEXT, DOB DATE, Gender TEXT, Mastery TEXT, 
                Yeargroup INTEGER,  Email TEXT)''')
 
 
@@ -17,7 +17,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Timetable
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Student_Info 
                (StudentID INTEGER, Parentname TEXT, Parentnumber INTEGER, 
-               Address TEXT, Nationality TEXT, countryofbirth TEXT, Enrollmentdate TEXT, 
+               Address TEXT, Nationality TEXT, countryofbirth TEXT, Enrollmentdate DATE, 
                FOREIGN KEY(StudentID) REFERENCES students(StudentID))''') 
 
 
@@ -28,18 +28,18 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Medical_Info
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Attendance 
                (AttendanceID INTEGER PRIMARY KEY AUTOINCREMENT, StudentID INTEGER, 
-               Date TEXT, Status TEXT, FOREIGN KEY(StudentID) REFERENCES students(StudentID))''')
+               Date DATE, Status TEXT, FOREIGN KEY(StudentID) REFERENCES students(StudentID))''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Behaviour 
                (BehaviourID INTEGER PRIMARY KEY AUTOINCREMENT, StudentID INTEGER, 
-               Date TEXT, Housepoints INTEGER, Sanctions TEXT, Action TEXT, 
+               Date DATE, Housepoints INTEGER, Sanctions TEXT, Action TEXT, 
                FOREIGN KEY(StudentID) REFERENCES students(StudentID))''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Teachers 
                (TeacherID INTEGER PRIMARY KEY AUTOINCREMENT, Firstname TEXT, 
-                Surname TEXT, Gender TEXT, Email TEXT)''')
+                Surname TEXT, Gender TEXT, Email TEXT, Role TEXT)''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Subjects 
@@ -56,15 +56,17 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Scores
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Assessments
                (AssessmentID INTEGER PRIMARY KEY AUTOINCREMENT, StudentID INTEGER, 
-               SubjectID INTEGER, Type TEXT, Score FLOAT, Date TEXT, 
+               SubjectID INTEGER, Type TEXT, Score FLOAT, Date DATE, 
                FOREIGN KEY(StudentID) REFERENCES students(StudentID), 
                FOREIGN KEY(SubjectID) REFERENCES subjects(SubjectID))''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Summaries
                (SummaryID INTEGER PRIMARY KEY AUTOINCREMENT, StudentID INTEGER, 
-               Week INTEGER, SummaryText TEXT, 
+               Week DATE, SummaryText TEXT, 
                FOREIGN KEY(StudentID) REFERENCES students(StudentID))''')
 
 
+
+cursor.execute("INSERT INTO Teachers (Firstname, Surname, Gender, Email, Role) VALUES (?,?,?,?,?)", ('Joshua', 'Curran', 'F', 'curranj@mercia.school', 'T'))
 connection.commit()
