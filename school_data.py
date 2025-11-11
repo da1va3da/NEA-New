@@ -67,6 +67,4 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Summaries
                FOREIGN KEY(StudentID) REFERENCES students(StudentID))''')
 
 
-
-cursor.execute("INSERT INTO Teachers (Firstname, Surname, Gender, Email, Role) VALUES (?,?,?,?,?)", ('Joshua', 'Curran', 'F', 'curranj@mercia.school', 'T'))
 connection.commit()
