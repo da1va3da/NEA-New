@@ -2,9 +2,9 @@
 from flask import Flask, render_template, session, abort, redirect, url_for, request, flash, jsonify, send_from_directory
 import datetime
 from flask_sqlalchemy import SQLAlchemy
-import MySQLdb.cursors
+# import MySQLdb.cursors
 import sqlite3
-from flask_mysqldb import MySQL
+# from flask_mysqldb import MySQL
 from flask_mail import Mail, Message
 import random 
 
@@ -12,7 +12,7 @@ import random
 app = Flask(__name__)
 app.secret_key = 'StudsightSecretKey123'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///forum.db'
-mysql = MySQL(app)
+# mysql = MySQL(app)
 
 # Flask-Mail config
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
