@@ -16,7 +16,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <form method="POST" novalidate>
+            <form method="POST">
                 <div class="input-row">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
@@ -31,7 +31,11 @@
                 </div>
                 <input class="btn" type="submit" value="Register">
             </form>
+
+            <a href="{{ url_for('login') }}"><h2>Back to Login</h2></a>
         </div>
     </div>
+
+
 </body>
 </html>

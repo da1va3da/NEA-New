@@ -4,3 +4,4 @@ Gunicorn
 SQLAlchemy
 pyinputplus
 Flask-Login
+MySQLdb

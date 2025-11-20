@@ -1,13 +1,39 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "base_page.html" %}
+
+{% block head %}
   <title>Studsight - Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
-</head>
-<body>
-    <div class="page">
+{% endblock %}
+
+{% block body %}
+    <h1 class="title">DASHBOARD</h1>
+    <div class="welcome">  
+        <h2>
+            {%if gender=='M'%}
+                Welcome, Mr {{ surname}}!
+            {%else%}
+                Welcome, Ms {{ surname}}!
+            {%endif%}
+        </h2>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <a href="{{ url_for('message_page') }}">
+                <img src="{{ url_for('static', filename='MsgBoard.png') }}" alt="" >
+            </a>
+            <h2>Messages</h2>
+        </div>
+
+        <div class="card">
+            <a href="{{ url_for('students') }}">
+                <img src="{{ url_for('static', filename='students.png') }}" alt="" >
+            </a>
+            <h2>Students</h2>
+        </div>
+    </div>
+{% endblock %}
+
+    <!-- <div class="page">
         <div class="sidebar">
             <img src="{{ url_for('static', filename='Profile.png') }}" alt="">  
             <div class="info">
@@ -44,4 +70,4 @@
         </div>
     </div>
 </body>
-</html>
+</html> -->

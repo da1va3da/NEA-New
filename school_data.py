@@ -39,12 +39,19 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Behaviour
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Teachers 
                (TeacherID INTEGER PRIMARY KEY AUTOINCREMENT, Firstname TEXT, 
-                Surname TEXT, Gender TEXT, Email TEXT, Role TEXT)''')
+                Surname TEXT, Gender TEXT, Email TEXT, Role TEXT, SubjectID INTEGER, 
+                FOREIGN KEY(SubjectID) REFERENCES subjects(SubjectID))''')
+
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS Teacher_info 
+               (TeacherID INTEGER, phonenumber INTEGER, personal_email TEXT, DOB DATE,
+                qualifications TEXT, Emergency_contact INTEGER, Address TEXT,
+                employment_start DATE,
+                FOREIGN KEY(TeacherID) REFERENCES Teachers(TeacherID))''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Subjects 
-               (SubjectID INTEGER PRIMARY KEY AUTOINCREMENT, Subjectname TEXT, 
-               TeacherID INTEGER, FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+                (SubjectID INTEGER PRIMARY KEY AUTOINCREMENT, Subjectname TEXT)''')
 
 
 cursor.execute('''CREATE TABLE IF NOT EXISTS Scores 
@@ -65,6 +72,39 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS Summaries
                (SummaryID INTEGER PRIMARY KEY AUTOINCREMENT, StudentID INTEGER, 
                Week DATE, SummaryText TEXT, 
                FOREIGN KEY(StudentID) REFERENCES students(StudentID))''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS Posts 
+               (PostID INTEGER PRIMARY KEY AUTOINCREMENT,Title TEXT, Content TEXT, 
+               Date DATE, Time Text, Attachments MEDIUMBLOB, Comments TEXT, TeacherID INTEGER,
+               FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS M_Posts 
+               (MPostID INTEGER PRIMARY KEY AUTOINCREMENT,Title TEXT, Content TEXT, 
+               Date DATE, Time Text, Attachments MEDIUMBLOB, Comments TEXT, TeacherID INTEGER,
+               FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS E_Posts 
+               (EPostID INTEGER PRIMARY KEY AUTOINCREMENT,Title TEXT, Content TEXT, 
+               Date DATE, Time Text, Attachments MEDIUMBLOB, Comments TEXT, TeacherID INTEGER,
+               FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS S_Posts 
+               (SPostID INTEGER PRIMARY KEY AUTOINCREMENT,Title TEXT, Content TEXT, 
+               Date DATE, Time Text, Attachments MEDIUMBLOB, Comments TEXT, TeacherID INTEGER,
+               FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS C_Posts 
+               (CPostID INTEGER PRIMARY KEY AUTOINCREMENT,Title TEXT, Content TEXT, 
+               Date DATE, Time Text, Attachments MEDIUMBLOB, Comments TEXT, TeacherID INTEGER,
+               FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS H_Posts 
+               (HPostID INTEGER PRIMARY KEY AUTOINCREMENT,Title TEXT, Content TEXT, 
+               Date DATE, Time Text, Attachments MEDIUMBLOB, Comments TEXT, TeacherID INTEGER,
+               FOREIGN KEY(TeacherID) REFERENCES teachers(TeacherID))''')
+
+
 
 
 connection.commit()
